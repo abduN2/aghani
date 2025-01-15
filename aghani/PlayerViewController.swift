@@ -91,10 +91,10 @@ class PlayerViewController: UIViewController {
         //setup user interface elements
         
         //album cover
-        albumImageView.frame = CGRect(x: 10,
-                                      y: 10,
-                                      width: holder.frame.size.width-20,
-                                      height: holder.frame.size.width-20)
+        albumImageView.frame = CGRect(x: 30,
+                                      y: 30,
+                                      width: holder.frame.size.width-60,
+                                      height: holder.frame.size.width-60)
         
         albumImageView.image = UIImage(named: song.imageName)
         holder.addSubview(albumImageView)
@@ -209,6 +209,13 @@ class PlayerViewController: UIViewController {
             player?.pause()
             //show play button
             playPauseButton.setBackgroundImage(UIImage(systemName: "play.fill"), for: .normal)
+            
+            UIView.animate(withDuration: 0.2) {
+                self.albumImageView.frame = CGRect(x: 60,
+                                                   y: 60,
+                                                   width: self.holder.frame.size.width-120,
+                                                   height: self.holder.frame.size.width-120)
+            }
 
         }
         else {
@@ -217,7 +224,12 @@ class PlayerViewController: UIViewController {
             //show pause button
             playPauseButton.setBackgroundImage(UIImage(systemName: "pause.fill"), for: .normal)
 
-            
+            UIView.animate(withDuration: 0.2) {
+                self.albumImageView.frame = CGRect(x: 30,
+                                                   y: 30,
+                                                   width: self.holder.frame.size.width-60,
+                                                   height: self.holder.frame.size.width-60)
+            }
         }
         
     }
