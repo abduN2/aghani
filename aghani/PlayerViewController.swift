@@ -122,9 +122,50 @@ class PlayerViewController: UIViewController {
         holder.addSubview(artistNameLabel)
         
         //player controls
+        let playPauseButton = UIButton()
+        let nextButton = UIButton()
+        let backButton = UIButton()
+        
+        //frame
+        let yPosition = artistNameLabel.frame.origin.y + 70 + 20
+        let size: CGFloat = 70
+        
+        playPauseButton.frame = CGRect(x: (holder.frame.size.width - size) / 2.0,
+                                       y: yPosition,
+                                       width: size,
+                                       height:size)
+        
+        nextButton.frame = CGRect(x: holder.frame.size.width - size - 20,
+                                  y: yPosition,
+                                  width: size,
+                                  height:size)
+        
+        backButton.frame = CGRect(x: 20,
+                                  y: yPosition,
+                                  width: size,
+                                  height:size)
+                                       
+        
+        //button actions
+        playPauseButton.addTarget(self, action: #selector(pressedPlayPauseButton), for: .touchUpInside)
+        nextButton.addTarget(self, action: #selector(pressedNextButton), for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(pressedBackButton), for: .touchUpInside)
+
         
         
+        //images & tints for buttons
+        playPauseButton.setBackgroundImage(UIImage(systemName: "pause.fill"), for: .normal)
+        backButton.setBackgroundImage(UIImage(systemName: "backward.fill"), for: .normal)
+        nextButton.setBackgroundImage(UIImage(systemName: "forward.fill"), for: .normal)
         
+        playPauseButton.tintColor = .black
+        backButton.tintColor = .black
+        nextButton.tintColor = .black
+        //add to holder
+        holder.addSubview(playPauseButton)
+        holder.addSubview(nextButton)
+        holder.addSubview(backButton)
+
         //slider for volume
         let slider = UISlider(frame: CGRect(x: 20,
                                             y: holder.frame.size.height-60,
@@ -135,6 +176,18 @@ class PlayerViewController: UIViewController {
         slider.addTarget(self, action: #selector(didSlideSlider(_:)), for: .valueChanged)
         holder.addSubview(slider)
         
+        
+    }
+    
+    @objc func pressedBackButton() {
+        
+    }
+    
+    @objc func pressedNextButton() {
+        
+    }
+    
+    @objc func pressedPlayPauseButton() {
         
     }
     
