@@ -23,6 +23,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		265110A02D37880600464382 /* Embed ExtensionKit Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(EXTENSIONS_FOLDER_PATH)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			name = "Embed ExtensionKit Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		261E0DBA2D364A2400CBD20E /* aghani.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aghani.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		261E0DD02D364A2500CBD20E /* aghaniTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = aghaniTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,6 +71,11 @@
 			path = aghaniUITests;
 			sourceTree = "<group>";
 		};
+		265110982D37880600464382 /* aghani2 */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = aghani2;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +109,7 @@
 				261E0DBC2D364A2400CBD20E /* aghani */,
 				261E0DD32D364A2500CBD20E /* aghaniTests */,
 				261E0DDD2D364A2500CBD20E /* aghaniUITests */,
+				265110982D37880600464382 /* aghani2 */,
 				261E0DBB2D364A2400CBD20E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -115,6 +134,7 @@
 				261E0DB62D364A2400CBD20E /* Sources */,
 				261E0DB72D364A2400CBD20E /* Frameworks */,
 				261E0DB82D364A2400CBD20E /* Resources */,
+				265110A02D37880600464382 /* Embed ExtensionKit Extensions */,
 			);
 			buildRules = (
 			);
