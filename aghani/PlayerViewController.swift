@@ -85,13 +85,12 @@ class PlayerViewController: UIViewController, AVAudioPlayerDelegate {
             guard let urlString = urlString else { return }
             
             player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: urlString))
-            player?.delegate = self  // Set the delegate
+            player?.delegate = self  // Ensure the delegate is set
             player?.volume = 0.5
             player?.play()
         } catch {
             print("Error occurred")
         }
-        
         // Configure Now Playing Info Center
         configureNowPlayingInfo(song: song)
         
@@ -160,7 +159,14 @@ class PlayerViewController: UIViewController, AVAudioPlayerDelegate {
         // Start a timer to update the progress slider and labels
         startTimer()
     }
-    
+
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        if flag {
+            // Move to the next song
+            pressedNextButton()
+        }
+    }
+
     func configureNowPlayingInfo(song: Song) {
         var nowPlayingInfo: [String: Any] = [
             MPMediaItemPropertyTitle: song.name,
@@ -238,7 +244,8 @@ class PlayerViewController: UIViewController, AVAudioPlayerDelegate {
     
     
     func startTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateProgressSlider), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateProgressSlider), userInfo: nil, repeats: true)
+
     }
     
     func stopTimer() {
@@ -248,8 +255,11 @@ class PlayerViewController: UIViewController, AVAudioPlayerDelegate {
     
     @objc func updateProgressSlider() {
         guard let player = player else { return }
-        progressSlider.value = Float(player.currentTime)
-        currentTimeLabel.text = formatTime(player.currentTime)
+        // Only update if the player is playing (no conflicts)
+        if player.isPlaying {
+            progressSlider.value = Float(player.currentTime)
+            currentTimeLabel.text = formatTime(player.currentTime)
+        }
     }
     
     @objc func didSlideProgressSlider(_ slider: UISlider) {
