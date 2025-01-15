@@ -45,6 +45,8 @@ class PlayerViewController: UIViewController {
         return label
     }()
     
+    let playPauseButton = UIButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -122,7 +124,6 @@ class PlayerViewController: UIViewController {
         holder.addSubview(artistNameLabel)
         
         //player controls
-        let playPauseButton = UIButton()
         let nextButton = UIButton()
         let backButton = UIButton()
         
@@ -180,14 +181,44 @@ class PlayerViewController: UIViewController {
     }
     
     @objc func pressedBackButton() {
-        
+        if position > 0 {
+            position -= 1
+            player?.stop()
+            for subview in holder.subviews {
+                subview.removeFromSuperview()
+            }
+            configure()
+        }
     }
     
     @objc func pressedNextButton() {
+        if position < songs.count - 1 {
+            position += 1
+            player?.stop()
+            for subview in holder.subviews {
+                subview.removeFromSuperview()
+            }
+            configure()
+        }
         
     }
     
     @objc func pressedPlayPauseButton() {
+        if player?.isPlaying == true {
+            //pause
+            player?.pause()
+            //show play button
+            playPauseButton.setBackgroundImage(UIImage(systemName: "play.fill"), for: .normal)
+
+        }
+        else {
+            //play
+            player?.play()
+            //show pause button
+            playPauseButton.setBackgroundImage(UIImage(systemName: "pause.fill"), for: .normal)
+
+            
+        }
         
     }
     
